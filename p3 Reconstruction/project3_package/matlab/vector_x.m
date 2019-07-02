@@ -1,0 +1,11 @@
+function vector_x=vector_x(X);
+vector_x=zeros(3,3);
+x=X(1);
+y=X(2);
+z=X(3);
+vector_x(2,1)=z;
+vector_x(3,1)=-y;
+vector_x(1,2)=-z;
+vector_x(3,2)=x;
+vector_x(1,3)=y;
+vector_x(2,3)=-x;

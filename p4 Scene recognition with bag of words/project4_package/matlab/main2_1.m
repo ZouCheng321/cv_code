@@ -1,0 +1,4 @@
+clear;
+batchToVisualWords(4) ;
+
+

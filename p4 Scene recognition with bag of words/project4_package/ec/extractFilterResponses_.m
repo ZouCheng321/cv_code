@@ -1,0 +1,21 @@
+function [filterResponses] = extractFilterResponses_(image, filterBank)
+H=size(image,1);
+W=size(image,2);
+n=size(filterBank,1);
+filterResponses=zeros(H,W,3*n);
+image=im2double(image);
+R=image(:,:,1);
+G=image(:,:,2);
+B=image(:,:,3);
+[L,a,b] = RGB2Lab(R,G,B);
+image(:,:,1)=reshape(L,H,W,1);
+image(:,:,2)=reshape(a,H,W,1);
+image(:,:,3)=reshape(b,H,W,1);
+filterResponses=zeros(H,W,size(filterBank,1)*3);
+for i=1:size(filterBank)
+    filter=filterBank{i};
+    %%expanded_image=expand_(image,filter);
+    filterResponses(:,:,i*3-2)=imfilter(image(:,:,1),filter);
+    filterResponses(:,:,i*3-1)=imfilter(image(:,:,2),filter);
+    filterResponses(:,:,i*3)=imfilter(image(:,:,3),filter);
+end
